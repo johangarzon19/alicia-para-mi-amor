@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>El Universo de Alicia ❤️</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+background:url('fondo.JPG') center/cover fixed;
+font-family:Georgia,serif;
+overflow-x:hidden;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:15px;
+}
+
+#pantallaInicio{
+position:fixed;
+inset:0;
+background:rgba(20,10,20,.85);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:999;
+backdrop-filter:blur(8px);
+}
+
+.carta{
+width:90%;
+max-width:420px;
+background:#fff8f3;
+padding:30px;
+border-radius:25px;
+text-align:center;
+animation:entrada 1.5s ease;
+}
+
+@keyframes entrada{
+from{opacity:0;transform:translateY(60px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.botonInicio{
+margin-top:20px;
+padding:15px 25px;
+border:none;
+border-radius:30px;
+background:#a64b6a;
+color:white;
+font-size:18px;
+}
+
+.container{
+display:none;
+max-width:460px;
+width:100%;
+background:rgba(255,248,243,.92);
+border-radius:30px;
+padding:25px;
+backdrop-filter:blur(8px);
+box-shadow:0 20px 60px rgba(0,0,0,.3);
+}
+
+.foto{
+width:170px;height:170px;
+border-radius:50%;
+display:block;
+margin:auto;
+border:8px solid #f1d5de;
+object-fit:cover;
+}
+
+h1{
+text-align:center;
+color:#a64b6a;
+margin:15px 0;
+}
+
+.relojGrande{
+position:fixed;
+top:20px;
+right:20px;
+font-size:40px;
+animation:gira 12s linear infinite;
+}
+
+@keyframes gira{
+from{transform:rotate(0deg)}
+to{transform:rotate(360deg)}
+}
+
+.conejo{
+position:fixed;
+bottom:30px;
+left:-120px;
+font-size:55px;
+animation:correr 12s linear infinite;
+}
+
+@keyframes correr{
+0%{left:-120px}
+100%{left:110%}
+}
+
+.cartaFlotante{
+position:fixed;
+font-size:26px;
+animation:caer 10s linear infinite;
+opacity:.7;
+}
+
+@keyframes caer{
+from{transform:translateY(-100px)}
+to{transform:translateY(120vh)}
+}
+
+.bloque{
+background:white;
+padding:18px;
+border-radius:18px;
+margin-top:18px;
+text-align:center;
+}
+
+button{
+width:100%;
+margin-top:20px;
+padding:16px;
+border:none;
+border-radius:30px;
+background:#a64b6a;
+color:white;
+font-size:18px;
+}
+
+#sorpresa{
+display:none;
+text-align:center;
+margin-top:20px;
+}
+
+#sorpresa img{
+width:100%;
+max-width:320px;
+border-radius:20px;
+}
+
+a{color:#a64b6a;font-weight:bold;text-decoration:none}
+
+.particula{
+position:fixed;
+font-size:26px;
+pointer-events:none;
+animation:subir 4s linear forwards;
+}
+
+@keyframes subir{
+to{transform:translateY(-600px);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div class="relojGrande">⏰</div>
+<div class="conejo">🐇</div>
+
+<div id="pantallaInicio">
+<div class="carta">
+<h2>💌 Para la mujer más maravillosa del mundo</h2>
+<br>
+<p>
+Hay invitaciones que se leen...
+y otras que se viven.
+</p>
+<button class="botonInicio" onclick="entrar()">
+Abrir mi regalo ❤️
+</button>
+</div>
+</div>
+
+<div class="container" id="contenido">
+
+<img src="foto.jpg" class="foto">
+
+<h1>Mi Alicia ❤️</h1>
+
+<p style="text-align:center;line-height:1.8">
+Como Alicia siguió al conejo blanco hacia un mundo mágico,
+quiero invitarte a una aventura creada especialmente para ti.
+<br><br>
+Esta noche celebraremos todo aquello que te ha traído hasta aquí:
+tu inteligencia, tu disciplina, tu perseverancia y el inmenso orgullo que siento por ti.
+</p>
+
+<div class="bloque">
+⏳ Falta para nuestra aventura
+<br><br>
+<b id="contador"></b>
+</div>
+
+<div class="bloque">
+📍
+<a href="https://maps.google.com/?q=Calle+8+Sur+32A-23+Bogota" target="_blank">
+El Universo de Alicia y su Conejo
+</a>
+<br><br>
+📅 19 de Junio
+<br>
+⏰ 7:30 PM
+</div>
+
+<button onclick="sorpresa()">
+Abrir la Puerta al País de las Maravillas ❤️
+</button>
+
+<div id="sorpresa">
+<img src="foto_dibujo_bn.png">
+<br><br>
+<p>
+"Gracias por llenar mi vida de amor, orgullo y felicidad.
+Si pudiera volver a empezar, volvería a elegirte una y mil veces."
+❤️
+</p>
+</div>
+
+<audio id="musica">
+<source src="para tu amor.aac" type="audio/aac">
+</audio>
+
+</div>
+
+<script>
+
+for(let i=0;i<15;i++){
+let c=document.createElement('div');
+c.className='cartaFlotante';
+c.innerHTML=['♠️','♥️','♦️','♣️'][Math.floor(Math.random()*4)];
+c.style.left=Math.random()*100+'vw';
+c.style.animationDuration=(6+Math.random()*8)+'s';
+document.body.appendChild(c);
+}
+
+function entrar(){
+document.getElementById('pantallaInicio').style.display='none';
+document.getElementById('contenido').style.display='block';
+}
+
+function sorpresa(){
+document.getElementById('musica').play();
+document.getElementById('sorpresa').style.display='block';
+
+for(let i=0;i<60;i++){
+let p=document.createElement('div');
+p.className='particula';
+p.innerHTML=Math.random()>.5?'❤️':'🌹';
+p.style.left=Math.random()*100+'vw';
+p.style.bottom='0';
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),4000);
+}
+}
+
+let fecha=new Date("June 19, 2026 19:30:00").getTime();
+
+setInterval(()=>{
+let ahora=new Date().getTime();
+let d=fecha-ahora;
+
+let dias=Math.floor(d/86400000);
+let horas=Math.floor((d%86400000)/3600000);
+let min=Math.floor((d%3600000)/60000);
+let seg=Math.floor((d%60000)/1000);
+
+document.getElementById('contador').innerHTML=
+dias+' días • '+horas+'h • '+min+'m • '+seg+'s';
+},1000);
+
+</script>
+
+</body>
+</html>
